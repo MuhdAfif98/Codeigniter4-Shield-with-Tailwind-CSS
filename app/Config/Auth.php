@@ -74,8 +74,8 @@ class Auth extends ShieldAuth
      * to apply any logic you may need.
      */
     public array $redirects = [
-        'login'             => '/',
-        'logout'            => 'login',
+        'login'             => '/dashboard',
+        'logout'            => '/',
         'force_reset'       => '/',
         'permission_denied' => '/',
         'group_denied'      => '/',
@@ -136,8 +136,7 @@ class Auth extends ShieldAuth
      * when using the 'chain' filter. Each Authenticator listed will be checked.
      * If no match is found, then the next in the chain will be checked.
      *
-     * @var string[]
-     * @phpstan-var list<string>
+     * @var list<string>
      */
     public array $authenticationChain = [
         'session',
@@ -263,7 +262,7 @@ class Auth extends ShieldAuth
      * You can add custom classes as long as they adhere to the
      * CodeIgniter\Shield\Authentication\Passwords\ValidatorInterface.
      *
-     * @var class-string<ValidatorInterface>[]
+     * @var list<class-string<ValidatorInterface>>
      */
     public array $passwordValidators = [
         CompositionValidator::class,
@@ -437,7 +436,9 @@ class Auth extends ShieldAuth
     public function loginRedirect(): string
     {
         $session = session();
-        $url     = $session->getTempdata('beforeLoginUrl') ?? setting('Auth.redirects')['login'];
+        $url = auth()->user()->inGroup('admin')
+            ? '/admin'
+            : setting('Auth.redirects')['login'];
 
         return $this->getUrl($url);
     }

@@ -1,0 +1,8 @@
+First time setup:
+#   composer install
+#   npm install
+#   cp env .env
+#   php spark serve
+
+LOGIN PAGE FOR SHIELD
+# location : vendor/codeigniter4/shield/src/Views/login.php
