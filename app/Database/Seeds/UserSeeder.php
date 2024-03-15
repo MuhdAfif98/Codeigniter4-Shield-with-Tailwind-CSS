@@ -13,18 +13,25 @@ class UserSeeder extends Seeder
 
 		$user_object->insertBatch([
 			[
-				"name" => "Sekolah",
-				"email" => "",
-				"phone_no" => "",
-				"role" => "sekolah",
-				"password" => password_hash("sekolah123", PASSWORD_DEFAULT)
+				"username" => "Super Admin",
+				"status" => NULL,
+				"status_message" => NULL,
+				"active" => 1,
+				"last_active" => NULL,
 			],
 			[
-				"name" => "Jabatan Pendidikan Negeri Terengganu",
-				"email" => "",
-				"phone_no" => "",
-				"role" => "jpnt",
-				"password" => password_hash("jpnt123", PASSWORD_DEFAULT)
+				"username" => "Sekolah",
+				"status" => NULL,
+				"status_message" => NULL,
+				"active" => 1,
+				"last_active" => NULL,
+			],
+			[
+				"username" => "Jabatan Pendidikan Negeri Terengganu",
+				"status" => NULL,
+				"status_message" => NULL,
+				"active" => 1,
+				"last_active" => NULL,
 			]
 		]);
 	}

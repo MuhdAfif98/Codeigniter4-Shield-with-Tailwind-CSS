@@ -2,6 +2,7 @@ First time setup:
 #   composer install
 #   npm install
 #   cp env .env
+#   php spark migrate
 #   php spark serve
 
 LOGIN PAGE FOR SHIELD

@@ -74,6 +74,7 @@ class Auth extends ShieldAuth
      * to apply any logic you may need.
      */
     public array $redirects = [
+        'school'           => '/school/index',
         'login'             => '/dashboard',
         'logout'            => '/',
         'force_reset'       => '/',
@@ -436,9 +437,19 @@ class Auth extends ShieldAuth
     public function loginRedirect(): string
     {
         $session = session();
-        $url = auth()->user()->inGroup('admin')
-            ? '/admin'
-            : setting('Auth.redirects')['login'];
+        $url = '';
+        $user = auth()->user();
+
+        if ($user->inGroup('admin')) {
+            $url = '/admin/index';
+        } elseif ($user->inGroup('ppd')) {
+            $url = '/ppd/index';
+        } elseif ($user->inGroup('jpnt')) {
+            $url = '/jpnt/index';
+        } else {
+            $url = setting('Auth.redirects')['school'];
+        }
+
 
         return $this->getUrl($url);
     }

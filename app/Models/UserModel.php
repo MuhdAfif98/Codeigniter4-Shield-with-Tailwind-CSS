@@ -15,11 +15,11 @@ class UserModel extends Model
 	protected $useSoftDelete        = false;
 	protected $protectFields        = true;
 	protected $allowedFields        = [
-		"name",
-		"email",
-		"phone_no",
-		"password",
-		"role"
+		"username",
+		"status",
+		"status_message",
+		"active",
+		"last_active"
 	];
 
 	// Dates
